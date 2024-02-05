@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_invoice_document_inherit" inherit_id="account.report_invoice_document">
+            <xpath expr="//th[@name='th_description']" position="after">
+                <th name="th_sap-code" class="text-start"><span t-if="o.move_type == 'out_invoice' and o.state == 'posted'">SAP Code</span></th>
+            </xpath>
+            <xpath expr="//span[@t-field='line.name']" position="after">
+                <td name="x_sap_code"><span t-if="o.move_type == 'out_invoice' and o.state == 'posted'" t-field="line.x_sap_code"/></td>
+            </xpath>
+        </template>
+    </data>
+</odoo>

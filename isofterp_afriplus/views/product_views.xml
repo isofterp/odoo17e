@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="product_normal_form_view_inherit" model="ir.ui.view">
+        <field name="name">product.product.form.inherit</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view" />
+        <field name="arch" type="xml">
+            <field name="categ_id" position="after">
+                <field name="x_sap_code"/>
+                <field name="x_hs_code"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="product_template_only_form_view_inherit" model="ir.ui.view">
+        <field name="name">product.template.only.form.view.inherit</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view" />
+        <field name="arch" type="xml">
+            <field name="categ_id" position="after">
+                <field name="x_sap_code"/>
+                <field name="x_hs_code"/>
+            </field>
+            <xpath expr="//group[@name='group_lots_and_weight']" position="inside">
+                <label for="x_gross_weight"/>
+                <div class="o_row" name="x_gross_weight">
+                    <field name="x_gross_weight" class="oe_inline"/>
+                    <field name="weight_uom_name"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="product_template_tree_view_inherit" model="ir.ui.view">
+        <field name="name">product.template.product.tree.inherit</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_tree_view" />
+        <field name="arch" type="xml">
+            <field name="default_code" position="after">
+                <field name="x_sap_code" optional="hide"/>
+                <field name="x_hs_code" optional="hide"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id="report_picking_inherit" inherit_id="stock.report_picking">
+            <xpath expr="//th[@name='th_product']" position="after">
+                <th name="th_sap_code" class="text-start"><span t-if="o.picking_type_id.code=='outgoing' and o.partner_id">SAP Code</span></th>
+                <th name="th_hs_code" class="text-start"><span t-if="o.picking_type_id.code=='outgoing' and o.partner_id">HS Code</span></th>
+            </xpath>
+            <xpath expr="//span[@t-field='ml.product_id.display_name']" position="after">
+                <td name="x_sap_code"><span t-if="o.picking_type_id.code=='outgoing' and o.partner_id" t-field="ml.x_sap_code"/></td>
+                <td name="x_hs_code"><span t-if="o.picking_type_id.code=='outgoing' and o.partner_id" t-field="ml.x_hs_code"/></td>
+            </xpath>
+        </template>
+
+    </data>
+</odoo>

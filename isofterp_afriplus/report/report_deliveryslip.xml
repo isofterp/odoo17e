@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <template id="report_delivery_document_inherit" inherit_id="stock.report_delivery_document">
+        <xpath expr="//div/table[@name='stock_move_table']/thead/tr/th[@name='th_sm_product']" position="after">
+            <th name="th_sm_sap_code" align="left"><strong>SAP Code</strong></th>
+            <th name="th_sm_hs_code" align="left"><strong>HS Code</strong></th>
+        </xpath>
+
+        <xpath expr="//div/table[@name='stock_move_line_table']/thead/tr/th[@name='th_sml_product']" position="after">
+            <th name="th_sml_sap_code" align="left" ><strong>SAP Code</strong></th>
+            <th name="th_sml_hs_code" align="left" ><strong>HS Code</strong></th>
+            <th name="th_sml_x_gross_weight" align="left" ><strong>Gross Weight</strong></th>
+        </xpath>
+    </template>
+
+    <template id="stock_report_delivery_has_serial_move_line_inherit" inherit_id="stock.stock_report_delivery_has_serial_move_line">
+        <xpath expr="//span[@t-field='move_line.product_id']" position="after">
+            <td t-if='move_line.x_sap_code' name="x_sap_code"><span t-field="move_line.x_sap_code"/></td>
+            <td t-if='move_line.x_hs_code' name="x_hs_code"><span t-field="move_line.x_hs_code"/></td>
+            <td t-if='move_line.x_gross_weight' name="x_gross_weight"><span t-field="move_line.x_gross_weight"/></td>
+        </xpath>
+    </template>
+
+    <template id="stock_report_delivery_aggregated_move_lines_inherit" inherit_id="stock.stock_report_delivery_aggregated_move_lines">
+        <xpath expr="//td[@name='move_line_aggregated_qty_ordered']" position="before">
+            <td class="text-center" name="move_line_aggregated_x_sap_code">
+                <span t-esc="aggregated_lines[line]['x_sap_code']"/>
+            </td>
+            <td class="text-center" name="move_line_aggregated_x_hs_code">
+                <span t-esc="aggregated_lines[line]['x_hs_code']"/>
+            </td>
+            <td class="text-center" name="move_line_aggregated_x_gross_weight">
+                <span t-esc="aggregated_lines[line]['x_gross_weight']"/>
+            </td>
+        </xpath>
+    </template>
+</odoo>
